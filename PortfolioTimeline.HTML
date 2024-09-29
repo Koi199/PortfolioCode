@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Timeline</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Main timeline container */
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 50px;
+    }
+
+    /* The timeline line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: #2196F3;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+
+    /* Container holding each timeline event */
+    .container {
+      padding: 10px 40px;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+    }
+
+    /* Left side container */
+    .container.left {
+      left: 0;
+    }
+
+    /* Right side container */
+    .container.right {
+      left: 50%;
+    }
+
+    /* Circles for each event */
+    .container::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border: 4px solid #2196F3;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  /* Position the circle for left-aligned containers */
+  .container.left::before {
+    right: -16px; /* Half of the circle width */
+  }
+
+  /* Position the circle for right-aligned containers */
+  .container.right::before {
+    left: -16px; /* Half of the circle width */
+  }
+
+    /* The box that holds text and images */
+    .content {
+      padding: 20px 30px;
+      background-color: white;
+      position: relative;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      max-width: 400px;
+      left: 50%; /* Keep content aligned in the center */
+      transform: translateX(-50%);
+    }
+
+    /* Hover effect */
+    .content:hover {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      transform: translateX(-50%) scale(1.05);
+    }
+
+    /* Headings for each event */
+    .content h2, .content h4 {
+      color: #2196F3;
+    }
+
+    /* Images inside content boxes */
+    .content img {
+      width: 100%;
+      height: auto;
+      margin-top: 15px;
+    }
+
+    /* Paragraph text */
+    .content p {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="timeline">
+
+  <!-- First event -->
+  <div class="container left">
+    <div class="content" onclick="window.open('https://www.example.com', '_blank')">
+      <h2>Graduation</h2>
+      <h4>May 25, 2015</h4>
+      <p>Graduation day! Celebrated the end of University with family and friends.</p>
+      <img src="graduation.jpg" alt="Graduation Day" />
+    </div>
+  </div>
+
+  <!-- Second event -->
+  <div class="container right">
+    <div class="content" onclick="window.open('https://www.example.com', '_blank')">
+      <h2>First Job</h2>
+      <h4>August 3, 2015</h4>
+      <p>Started working as a curator in a local museum.</p>
+      <img src="job.jpg" alt="First Job" />
+    </div>
+  </div>
+
+  <!-- Third event -->
+  <div class="container left">
+    <div class="content" onclick="window.open('https://www.example.com', '_blank')">
+      <h2>Study Abroad</h2>
+      <h4>September 1, 2017</h4>
+      <p>Traveled to Italy for studies in art history.</p>
+      <img src="italy.jpg" alt="Study in Italy" />
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
