@@ -13,7 +13,7 @@
 
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background-color: #000000;
     }
 
     /* Main timeline container */
@@ -58,9 +58,9 @@
     .container::before {
     content: '';
     position: absolute;
-    width: 25px;
-    height: 25px;
-    background-color: white;
+    width: 12px;
+    height: 12px;
+    background-color: #2196F3;
     border: 4px solid #2196F3;
     border-radius: 50%;
     z-index: 1;
@@ -68,14 +68,13 @@
 
   /* Position the circle for left-aligned containers */
   .container.left::before {
-    right: -16px; /* Half of the circle width */
+    right: -10px; /* Half of the circle width */
   }
 
   /* Position the circle for right-aligned containers */
   .container.right::before {
-    left: -16px; /* Half of the circle width */
+    left: -10px; /* Half of the circle width */
   }
-
     /* The box that holds text and images */
     .content {
       padding: 20px 30px;
@@ -120,32 +119,35 @@
 <div class="timeline">
 
   <!-- First event -->
-  <div class="container left">
-    <div class="content" onclick="window.open('https://www.example.com', '_blank')">
-      <h2>Graduation</h2>
-      <h4>May 25, 2015</h4>
-      <p>Graduation day! Celebrated the end of University with family and friends.</p>
-      <img src="graduation.jpg" alt="Graduation Day" />
+  <div class="container right">
+    <div class="content" onclick="window.open('https://www.kyleav.com/TESLAControls', '_blank')">
+      <h2>TESLA</h2>
+      <h4>Jan 2024 - Aug 2024</h4>
+      <h5>Automation Controls Intern:</h5>
+      <p>PLC and Android development for RFID integration</p>
+      <img src="https://i.imgur.com/FUVtf0G.jpeg" alt="Tesla Cell Manufacturing" style="width: 100%; height: auto;"/>
     </div>
   </div>
 
   <!-- Second event -->
-  <div class="container right">
+  <div class="container left">
     <div class="content" onclick="window.open('https://www.example.com', '_blank')">
-      <h2>First Job</h2>
-      <h4>August 3, 2015</h4>
-      <p>Started working as a curator in a local museum.</p>
-      <img src="job.jpg" alt="First Job" />
+      <h2>UBC CARIS Lab</h2>
+      <h4>Jan 2022 - Sep 2023</h4>
+      <h5>Robotics Research Assistant:</h5>
+      <p>Control systems development for Vacuum Injection Moulding End-Effector</p>
+      <img src="https://i.imgur.com/6HTEIJo.png" alt="VIMEE Gripper" style="width: 100%; height: auto;"/>
     </div>
   </div>
 
   <!-- Third event -->
-  <div class="container left">
+  <div class="container right">
     <div class="content" onclick="window.open('https://www.example.com', '_blank')">
-      <h2>Study Abroad</h2>
-      <h4>September 1, 2017</h4>
-      <p>Traveled to Italy for studies in art history.</p>
-      <img src="italy.jpg" alt="Study in Italy" />
+      <h2>FLUOR Corporation</h2>
+      <h4>May 2022 - Dec 2022</h4>
+      <h5>Mechanical Engineering Intern:</h5>
+      <p>Material Handling Engineering for JOSEMARIA Project</p>
+      <img src="https://i.imgur.com/1hXmCqw.jpeg" alt="Fluor Logo" style="width: 100%; height: auto;"/>
     </div>
   </div>
 
