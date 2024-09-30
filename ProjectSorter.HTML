@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Gallery with Animations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            background-color: #ddd;
+            border: none;
+            color: #333;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .filter-btn.active {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            position: relative;
+        }
+
+        .gallery-item {
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.5s ease-in-out;
+            position: absolute;
+        }
+
+        .gallery-item.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-item.hide {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Click each picture to learn more.</h1>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">ALL</button>
+            <button class="filter-btn" data-filter="internships">INTERNSHIPS</button>
+            <button class="filter-btn" data-filter="personal">PERSONAL</button>
+            <button class="filter-btn" data-filter="student-teams">STUDENT TEAMS</button>
+        </div>
+        
+        <div class="gallery">
+            <div class="gallery-item" data-category="internships">
+                <img src="https://via.placeholder.com/300x200?text=iPhones" alt="iPhones">
+            </div>
+            <div class="gallery-item" data-category="personal">
+                <img src="https://via.placeholder.com/300x200?text=Rocket+Launch" alt="Rocket Launch">
+            </div>
+            <div class="gallery-item" data-category="student-teams">
+                <img src="https://via.placeholder.com/300x200?text=Gears" alt="Gears">
+            </div>
+            <div class="gallery-item" data-category="internships">
+                <img src="https://via.placeholder.com/300x200?text=3D+Model" alt="3D Model">
+            </div>
+            <div class="gallery-item" data-category="personal">
+                <img src="https://via.placeholder.com/300x200?text=Machine+Part" alt="Machine Part">
+            </div>
+            <div class="gallery-item" data-category="student-teams">
+                <img src="https://via.placeholder.com/300x200?text=Mechanical+Setup" alt="Mechanical Setup">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const gallery = document.querySelector('.gallery');
+
+            function updateLayout() {
+                const visibleItems = document.querySelectorAll('.gallery-item.show');
+                visibleItems.forEach((item, index) => {
+                    const row = Math.floor(index / 3);
+                    const col = index % 3;
+                    item.style.transform = `translate(${col * 320}px, ${row * 220}px)`;
+                });
+                gallery.style.height = `${Math.ceil(visibleItems.length / 3) * 220}px`;
+            }
+
+            function filterItems(filter) {
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('hide');
+                        item.classList.add('show');
+                    } else {
+                        item.classList.remove('show');
+                        item.classList.add('hide');
+                    }
+                });
+                updateLayout();
+            }
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    filterItems(filter);
+                });
+            });
+
+            // Initial layout
+            filterItems('all');
+        });
+    </script>
+</body>
+</html>
