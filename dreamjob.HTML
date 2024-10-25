@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Dream Jobs Timeline</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .job {
+      padding: 20px;
+      border-radius: 10px;
+      margin: 10px;
+      color: white;
+      font-size: 1.3em;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phase {
+      padding: 15px;
+      border-radius: 10px;
+      margin: 10px;
+      color: white;
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+    /* Specific styles for each box */
+    .pokemon { background-color: #1a4cd9; }
+    .plumber { background-color: #a5101a; }
+    .ironman { background-color: #d7b700; }
+    .mechatronics { background-color: #2c2c2c; border: 2px solid #e2e2e2; }
+    .firmware { background-color: #697b63; }
+
+    .fisherman { background-color: #6da137; }
+    .loafing { background-color: #45b1e0; }
+    .university { background-color: #1c4a9f; }
+    .useful { background-color: #800de4; }
+
+    /* Arrow styles */
+    .arrow {
+      display: flex;
+      align-items: center;
+      font-size: 2em;
+      padding: 0 15px;
+      color: white;
+    }
+
+    /* Responsive design */
+    @media screen and (max-width: 768px) {
+      .timeline {
+        flex-direction: column;
+      }
+
+      .arrow {
+        display: none;
+      }
+
+      .job, .phase {
+        font-size: 1em;
+      }
+
+      h1, h2 {
+        font-size: 1.5em;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>My</h1>
+    <h2>Dream Jobs</h2>
+
+    <div class="timeline">
+      <!-- Top row jobs -->
+      <div class="job pokemon">Professional Pokemon Player</div>
+      <div class="arrow">➔</div>
+      <div class="job plumber">Plumber</div>
+      <div class="arrow">➔</div>
+      <div class="job ironman">Iron Man Suit Builder</div>
+      <div class="arrow">➔</div>
+      <div class="job mechatronics">Mechatronics Engineer</div>
+      <div class="arrow">➔</div>
+      <div class="job firmware">Firmware Engineer</div>
+    </div>
+
+    <div class="timeline">
+      <!-- Bottom row phases -->
+      <div class="phase fisherman">Fisherman phase, Mauritius</div>
+      <div class="phase loafing">Loafing Phase, Mauritius</div>
+      <div class="phase university">University Phase, Vancouver</div>
+      <div class="phase useful">Hopefully be useful</div>
+    </div>
+  </div>
+
+</body>
+</html>

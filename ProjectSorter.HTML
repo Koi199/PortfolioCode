@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Gallery with Animations</title>
+    <title>Centered Project Gallery with Animations</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #000;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
             text-align: center;
             color: #333;
+            font-size: 2em;
         }
 
         .filter-buttons {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .filter-btn {
@@ -34,7 +39,7 @@
             border: none;
             color: #333;
             padding: 10px 20px;
-            margin: 0 5px;
+            margin: 5px;
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s;
@@ -45,20 +50,31 @@
             color: #fff;
         }
 
+        .gallery-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             position: relative;
+            justify-content: center;
+            width: 100%;
         }
 
         .gallery-item {
             background-color: #fff;
             border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease-in-out;
             position: absolute;
+            width: 100%;
+            height: 200px;
+            max-width: 300px;
         }
 
         .gallery-item.show {
@@ -74,8 +90,43 @@
 
         .gallery-item img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
+        }
+
+        /* Responsive design for smaller screens */
+        @media screen and (max-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item {
+                height: 180px;
+            }
+
+            .filter-btn {
+                padding: 8px 15px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 150px;
+            }
+
+            .filter-btn {
+                padding: 6px 10px;
+                margin: 4px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
@@ -90,24 +141,26 @@
             <button class="filter-btn" data-filter="student-teams">STUDENT TEAMS</button>
         </div>
         
-        <div class="gallery">
-            <div class="gallery-item" data-category="internships">
-                <img src="https://via.placeholder.com/300x200?text=iPhones" alt="iPhones">
-            </div>
-            <div class="gallery-item" data-category="personal">
-                <img src="https://via.placeholder.com/300x200?text=Rocket+Launch" alt="Rocket Launch">
-            </div>
-            <div class="gallery-item" data-category="student-teams">
-                <img src="https://via.placeholder.com/300x200?text=Gears" alt="Gears">
-            </div>
-            <div class="gallery-item" data-category="internships">
-                <img src="https://via.placeholder.com/300x200?text=3D+Model" alt="3D Model">
-            </div>
-            <div class="gallery-item" data-category="personal">
-                <img src="https://via.placeholder.com/300x200?text=Machine+Part" alt="Machine Part">
-            </div>
-            <div class="gallery-item" data-category="student-teams">
-                <img src="https://via.placeholder.com/300x200?text=Mechanical+Setup" alt="Mechanical Setup">
+        <div class="gallery-container">
+            <div class="gallery">
+                <div class="gallery-item show" data-category="internships">
+                    <img src="https://via.placeholder.com/300x200?text=iPhones" alt="iPhones">
+                </div>
+                <div class="gallery-item show" data-category="personal">
+                    <img src="https://via.placeholder.com/300x200?text=Rocket+Launch" alt="Rocket Launch">
+                </div>
+                <div class="gallery-item show" data-category="student-teams">
+                    <img src="https://via.placeholder.com/300x200?text=Gears" alt="Gears">
+                </div>
+                <div class="gallery-item show" data-category="internships">
+                    <img src="https://via.placeholder.com/300x200?text=3D+Model" alt="3D Model">
+                </div>
+                <div class="gallery-item show" data-category="personal">
+                    <img src="https://via.placeholder.com/300x200?text=Machine+Part" alt="Machine Part">
+                </div>
+                <div class="gallery-item show" data-category="student-teams">
+                    <img src="https://via.placeholder.com/300x200?text=Mechanical+Setup" alt="Mechanical Setup">
+                </div>
             </div>
         </div>
     </div>
@@ -120,12 +173,20 @@
 
             function updateLayout() {
                 const visibleItems = document.querySelectorAll('.gallery-item.show');
+                const itemWidth = 300;
+                const itemHeight = 200;
+                const gap = 20;
+                const columns = window.innerWidth < 768 ? 1 : (window.innerWidth < 1024 ? 2 : 3);
+
                 visibleItems.forEach((item, index) => {
-                    const row = Math.floor(index / 3);
-                    const col = index % 3;
-                    item.style.transform = `translate(${col * 320}px, ${row * 220}px)`;
+                    const row = Math.floor(index / columns);
+                    const col = index % columns;
+                    item.style.transform = `translate(${col * (itemWidth + gap)}px, ${row * (itemHeight + gap)}px)`;
                 });
-                gallery.style.height = `${Math.ceil(visibleItems.length / 3) * 220}px`;
+
+                const rows = Math.ceil(visibleItems.length / columns);
+                gallery.style.height = `${rows * (itemHeight + gap) - gap}px`;
+                gallery.style.width = `${columns * (itemWidth + gap) - gap}px`;
             }
 
             function filterItems(filter) {
@@ -152,6 +213,9 @@
 
             // Initial layout
             filterItems('all');
+
+            // Recalculate layout on window resize
+            window.addEventListener('resize', updateLayout);
         });
     </script>
 </body>
